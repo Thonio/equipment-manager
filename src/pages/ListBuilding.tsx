@@ -1,12 +1,10 @@
-import { Apartment } from "@mui/icons-material"
+import { Add, Apartment } from "@mui/icons-material"
 import { ItemListComponent } from "../components/ItemListComponent"
+import { BuildingType } from "../types/types"
+import { Box, Button, Drawer } from "@mui/material"
+import { useState } from "react"
+import { FormBuildingComponent } from "../components/FormBuildingComponent"
 
-interface BuildingType {
-  id: number,
-  name: string,
-  address: string,
-  description: string,
-}
 const buildingArr: BuildingType[] = [
   {
     id: 1,
@@ -23,8 +21,13 @@ const buildingArr: BuildingType[] = [
 ]
 
 export const ListBuilding = () => {
+  const [open, setOpen] = useState(false)
+
   return (
     <>
+      <Box sx={{ mb: 2, textAlign: "right" }}>
+        <Button startIcon={<Add />} variant="outlined" onClick={() => setOpen(true)}>Ajouter un Batiment</Button>
+      </Box>
       {
         buildingArr.map((item) => (
           <ItemListComponent onView={() => console.log('test')} onEdit={() => { }} icon={<Apartment />}>
@@ -32,6 +35,10 @@ export const ListBuilding = () => {
           </ItemListComponent>
         ))
       }
+
+      <Drawer open={open} anchor="right" onClose={() => setOpen(false)}>
+        <FormBuildingComponent />
+      </Drawer>
     </>
   )
 }
