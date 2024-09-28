@@ -8,7 +8,7 @@ export interface BuildingType {
 }
 
 export interface EquipmentType {
-  id?: number,
+  id: number,
   name: string,
   type?: string,
   description?: string

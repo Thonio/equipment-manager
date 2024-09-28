@@ -4,7 +4,9 @@ import { EquipmentType } from "../types/types"
 import { localStorageTools } from "../tools/localStorage"
 
 interface FormEquipmentProps {
+  currentList: EquipmentType[]
   editedId?: number
+  onClose: () => void
 }
 
 const initData: EquipmentType = {
@@ -14,9 +16,8 @@ const initData: EquipmentType = {
   description: '',
 }
 
-export const FormEquipmentComponent = ({ editedId }: FormEquipmentProps) => {
+export const FormEquipmentComponent = ({ currentList, editedId, onClose }: FormEquipmentProps) => {
   const [data, setData] = useState<EquipmentType>(initData)
-  const currentList = JSON.parse(localStorageTools('equipment').get() || '')
   const lastId = localStorageTools('equipmentId').get() || 1
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target
@@ -26,8 +27,15 @@ export const FormEquipmentComponent = ({ editedId }: FormEquipmentProps) => {
     }))
   }
   const handleSubmit = () => {
-    localStorageTools('equipmentId').set(Number(lastId) + 1)
-    localStorageTools('equipment').set([...currentList, data])
+    if (!editedId) {
+      localStorageTools('equipmentId').set(Number(lastId) + 1)
+      localStorageTools('equipment').set([...currentList, data])
+    } else {
+      const editedIndex = currentList.findIndex((item) => item.id === editedId)
+      currentList.splice(editedIndex, 1, data)
+      localStorageTools('equipment').set(currentList)
+    }
+    onClose()
   }
 
   useEffect(() => {
@@ -37,10 +45,8 @@ export const FormEquipmentComponent = ({ editedId }: FormEquipmentProps) => {
         id: Number(lastId)
       }))
     } else {
-      setData((prev) => ({
-        ...prev,
-        id: editedId
-      }))
+      const editedObj: EquipmentType = currentList.find((item) => item.id === editedId) || initData
+      setData(editedObj)
     }
   }, [])
 
@@ -62,7 +68,7 @@ export const FormEquipmentComponent = ({ editedId }: FormEquipmentProps) => {
         <TextField name="description" value={data?.description} multiline fullWidth label="Description" onChange={handleChange} />
       </Box>
       <Box sx={{ textAlign: 'center' }}>
-        <Button variant="outlined" color="error" sx={{ mr: 1 }}>Annuler</Button>
+        <Button variant="outlined" color="error" sx={{ mr: 1 }} onClick={onClose}>Annuler</Button>
         <Button variant="outlined" onClick={handleSubmit}>Valider</Button>
       </Box>
     </Box>

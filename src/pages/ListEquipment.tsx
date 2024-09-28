@@ -8,11 +8,20 @@ import { localStorageTools } from "../tools/localStorage"
 
 export const ListEquipment = () => {
   const [open, setOpen] = useState(false)
+  const [editedId, setEditedId] = useState<number>()
   const [listEquipment, setListEquipment] = useState<EquipmentType[]>([])
   const dataEquipment = localStorageTools('equipment').get()
+  const resetState = () => {
+    setOpen(false)
+    setEditedId(undefined)
+  }
 
   useEffect(() => {
-    setListEquipment(JSON.parse(dataEquipment || ''))
+    if (!dataEquipment) {
+      setListEquipment([])
+    } else {
+      setListEquipment(JSON.parse(dataEquipment))
+    }
   }, [dataEquipment])
 
   return (
@@ -27,14 +36,22 @@ export const ListEquipment = () => {
       }
       {
         listEquipment.map((item) => (
-          <ItemListComponent key={item.id} onView={() => console.log('test')} onEdit={() => { }} icon={<Construction />}>
-            <>{item.name}</>
+          <ItemListComponent
+            key={item.id}
+            onView={() => console.log('test')}
+            onEdit={() => {
+              setEditedId(item.id)
+              setOpen(true)
+            }}
+            icon={<Construction />}
+          >
+            {item.name}
           </ItemListComponent>
         ))
       }
 
-      <Drawer open={open} anchor="right" onClose={() => setOpen(false)}>
-        <FormEquipmentComponent />
+      <Drawer open={open} anchor="right" onClose={resetState}>
+        <FormEquipmentComponent currentList={listEquipment} onClose={resetState} editedId={editedId} />
       </Drawer>
     </>
   )
