@@ -30,7 +30,7 @@ export const ListBuilding = () => {
       </Box>
       {
         buildingArr.map((item) => (
-          <ItemListComponent onView={() => console.log('test')} onEdit={() => { }} icon={<Apartment />}>
+          <ItemListComponent key={item.id} onView={() => console.log('test')} onEdit={() => { }} icon={<Apartment />}>
             <>{item.name}</>
           </ItemListComponent>
         ))

@@ -5,7 +5,7 @@ export const localStorageTools = (nameStore?: string) => {
       if (typeof window !== 'undefined') return localStorage.getItem(nameStorage)
     },
     set: (data: any) => {
-      if (typeof window !== 'undefined') return localStorage.setItem(nameStorage, data)
+      if (typeof window !== 'undefined') return localStorage.setItem(nameStorage, JSON.stringify(data))
     },
     remove: () => {
       if (typeof window !== 'undefined') return localStorage.removeItem(nameStorage)

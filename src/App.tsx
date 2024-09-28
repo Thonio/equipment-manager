@@ -2,6 +2,7 @@ import { Box, Tab, Tabs } from "@mui/material"
 import { LayoutComponent } from "./components/LayoutComponent"
 import { useState } from "react"
 import { ListBuilding } from "./pages/ListBuilding"
+import { ListEquipment } from "./pages/ListEquipment"
 
 function App() {
   const [value, setValue] = useState('building')
@@ -18,7 +19,7 @@ function App() {
         value === 'building' ? (
           <ListBuilding />
         ) : (
-          <Box>Equipement</Box>
+          <ListEquipment />
         )
       }
     </LayoutComponent>
