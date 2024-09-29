@@ -5,12 +5,16 @@ import { Box, Button, Drawer, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import { FormEquipmentComponent } from "../components/FormEquipmentComponent"
 import { localStorageTools } from "../tools/localStorage"
+import { useNavigate } from "react-router-dom"
 
 export const ListEquipment = () => {
   const [open, setOpen] = useState(false)
   const [editedId, setEditedId] = useState<number>()
   const [listEquipment, setListEquipment] = useState<EquipmentType[]>([])
+
   const dataEquipment = localStorageTools('equipment').get()
+  const navigate = useNavigate()
+
   const resetState = () => {
     setOpen(false)
     setEditedId(undefined)
@@ -38,7 +42,7 @@ export const ListEquipment = () => {
         listEquipment.map((item) => (
           <ItemListComponent
             key={item.id}
-            onView={() => console.log('test')}
+            onView={() => navigate(`/equipment/${item.id}`)}
             onEdit={() => {
               setEditedId(item.id)
               setOpen(true)
