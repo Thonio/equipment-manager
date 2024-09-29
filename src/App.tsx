@@ -7,9 +7,9 @@ import { ListEquipment } from "./pages/ListEquipment"
 function App() {
   const [value, setValue] = useState('building')
   return (
-    <LayoutComponent title="Gestion des equipements de batiments">
+    <LayoutComponent title="Gestion des équipements de bâtiments">
       <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
-        <Tabs value={value} onChange={(e, val) => setValue(val)} aria-label="basic">
+        <Tabs value={value} onChange={(_e, val) => setValue(val)} aria-label="basic">
           <Tab value="building" label="Batiment" />
           <Tab value="equipment" label="équipement" />
         </Tabs>
