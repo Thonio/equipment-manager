@@ -31,11 +31,11 @@ export const ListBuilding = () => {
   return (
     <>
       <Box sx={{ mb: 2, textAlign: "right" }}>
-        <Button startIcon={<Add />} variant="outlined" onClick={() => setOpen(true)}>Ajouter un Batiment</Button>
+        <Button startIcon={<Add />} variant="outlined" onClick={() => setOpen(true)}>Ajouter un bâtiment</Button>
       </Box>
       {
         !dataBuilding && (
-          <Typography variant="body1" sx={{ textAlign: 'center' }}>Pas de batiment encore enregistrer</Typography>
+          <Typography variant="body1" sx={{ textAlign: 'center' }}>Pas de bâtiment encore enregistrer</Typography>
         )
       }
       {

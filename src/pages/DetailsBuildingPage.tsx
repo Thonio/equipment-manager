@@ -30,7 +30,7 @@ export const DetailsBuildingPage = () => {
   }, [fetchListEquipment, details])
 
   return (
-    <LayoutComponent title="Details batiment">
+    <LayoutComponent title="Details bâtiment">
       <Box>
         <Button onClick={() => navigate('/')} startIcon={<ArrowBack />}>Retour</Button>
       </Box>
@@ -40,11 +40,11 @@ export const DetailsBuildingPage = () => {
         </Avatar>
       </Box>
       <Box sx={{ mb: 3 }}>
-        <Typography variant="h5" component='div' sx={{ fontWeight: 500 }}>Nom du batiment:</Typography>
+        <Typography variant="h5" component='div' sx={{ fontWeight: 500 }}>Nom du bâtiment:</Typography>
         <Typography variant="body1">{details?.name}</Typography>
       </Box>
       <Box sx={{ mb: 3 }}>
-        <Typography variant="h5" component='div' sx={{ fontWeight: 500 }}>Adresse du batiment:</Typography>
+        <Typography variant="h5" component='div' sx={{ fontWeight: 500 }}>Adresse du bâtiment:</Typography>
         <Typography variant="body1">{details?.address}</Typography>
       </Box>
       <Box sx={{ mb: 3 }}>

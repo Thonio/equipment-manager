@@ -31,11 +31,11 @@ export const ListEquipment = () => {
   return (
     <>
       <Box sx={{ mb: 2, textAlign: "right" }}>
-        <Button startIcon={<Add />} variant="outlined" onClick={() => setOpen(true)}>Ajouter un equipement</Button>
+        <Button startIcon={<Add />} variant="outlined" onClick={() => setOpen(true)}>Ajouter un équipement</Button>
       </Box>
       {
         !dataEquipment && (
-          <Typography variant="body1" sx={{ textAlign: 'center' }}>Pas d'equipement encore enregistrer</Typography>
+          <Typography variant="body1" sx={{ textAlign: 'center' }}>Pas d'équipement encore enregistrer</Typography>
         )
       }
       {
