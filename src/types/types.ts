@@ -4,7 +4,7 @@ export interface BuildingType {
   name?: string,
   address?: string,
   description?: string,
-  equimentListId?: number[]
+  equimentListId: number[]
 }
 
 export interface EquipmentType {
