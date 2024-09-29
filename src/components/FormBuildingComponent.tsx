@@ -94,7 +94,14 @@ export const FormBuildingComponent = ({ currentList, editedId, onClose }: FormBu
       <FormGroup sx={{ mb: 3 }}>
         {
           listEquipment.map((item) => (
-            <FormControlLabel key={item.id} value={item.id} onChange={() => handleCheck(item.id)} control={<Checkbox />} label={item.name} />
+            <FormControlLabel
+              key={item.id}
+              value={item.id}
+              onChange={() => handleCheck(item.id)}
+              control={<Checkbox />}
+              label={item.name}
+              checked={data.equimentListId.includes(item.id)}
+            />
           ))
         }
       </FormGroup>
